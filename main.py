@@ -11,6 +11,7 @@ from aiogram import Bot, types, Dispatcher
 from aiogram.types import InputMediaPhoto
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 import base
 import functions as fn
@@ -239,7 +240,7 @@ async def knowledge_test(callback_query: types.CallbackQuery):
 
 
 # Обучение
-@dp.callback_query_handler(lambda c: c.data == "learning")
+@dp.callback_query_handler(lambda c: c.data == "learning" or c.data == "back_to_learning")
 async def learning(callback_query: types.CallbackQuery):
     await bot.answer_callback_query(callback_query.id)
     if base.language(str(callback_query.from_user.id), '', set=False, get=True) == "английский":
@@ -258,7 +259,20 @@ async def learning_pronunciation(callback_query: types.CallbackQuery):
 @dp.callback_query_handler(lambda c: c.data == 'tenses')
 async def learning_tenses(callback_query: types.CallbackQuery):
     await bot.answer_callback_query(callback_query.id)
-    await bot.send_message(callback_query.from_user.id, '🕒 выбрана опция: <b>"времена".</b>')
+    text = '''
+🕒 выбрана опция: <b>"времена".</b>
+🎁 эта, на первый взгляд, сложная шпаргалка, на самом деле довольно емкая. в каждой клетке указана характеристика времени, 
+метод образования и маркеры (слова, по которым можно различать времена).
+<b>p.s.</b> главное, помни порядок слов в предложении:
+1. <b>утвердительное</b> - подлежащее, сказуемое (возможен вспомогательный глагол), другие члены предложения
+2. <b>отрицательное</b> - обстоятельство, подлежащее (возможно с определением), вспомогательный глагол + not,
+основной глагол, дополнение (возможно с определением)
+3. <b>вопросительное</b> - вспомогательный глагол, подлежащее (возможно с определением), основной глагол,
+дополнение (возможно с определением), обстоятельство
+    '''
+    file = InputMediaPhoto(media="https://4ege.ru/uploads/posts/2020-11/1605041906_79fc.png",
+                           caption=text)
+    await callback_query.message.edit_media(file, reply_markup=kb.kb_learning_tenses)
 
 
 @dp.callback_query_handler(lambda c: c.data == 'exams')
