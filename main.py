@@ -18,7 +18,7 @@ import functions as fn
 import keyboards as kb
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token="5911147477:AAEsJtQB0A4DQlXPbvdefbQu2EyvYjGGCok", parse_mode="HTML")
+bot = Bot(token="TOKEN", parse_mode="HTML")
 dp = Dispatcher(bot, storage=MemoryStorage())
 translator = Translator()
 
