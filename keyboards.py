@@ -75,6 +75,10 @@ kb_learning.add(InlineKeyboardButton("🕒 времена", callback_data="tense
 kb_learning.add(InlineKeyboardButton("🧠 подготовка к экзаменам", callback_data="exams"))
 kb_learning.add(button_main_menu)
 
+# Обучение (времена)
+kb_learning_tenses = InlineKeyboardMarkup()
+kb_learning_tenses.add(InlineKeyboardButton("⬅ вернуться", callback_data="back_to_learning"))
+
 # Тесты на знание языка
 kb_test = InlineKeyboardMarkup()
 kb_test.add(button_main_menu)
