@@ -77,7 +77,76 @@ kb_learning.add(button_main_menu)
 
 # Обучение (времена)
 kb_learning_tenses = InlineKeyboardMarkup()
-kb_learning_tenses.add(InlineKeyboardButton("⬅ вернуться", callback_data="back_to_learning"))
+button_back = InlineKeyboardButton("⬅ вернуться к разделам", callback_data="back_to_learning")
+kb_learning_tenses.add(button_back)
+button_back_to_learning = InlineKeyboardButton("⬅ вернуться к курсам", callback_data="back_to_courses")
+
+# Обучение (основы произношения)
+kb_pronunciation = InlineKeyboardMarkup()
+kb_pronunciation.add(
+    InlineKeyboardButton("📚 1. открытый и закрытый слоги (~2 мин)", callback_data="open_close_syllable"))
+kb_pronunciation.add(
+    InlineKeyboardButton("📚 2. соответствие букв и звуков (~10 мин)", callback_data="letters_sounds"))
+kb_pronunciation.add(
+    InlineKeyboardButton("📚 3. дифтонги и трифтонги (~5 мин)", callback_data="diphthongs_triphthongs"))
+kb_pronunciation.add(InlineKeyboardButton("📚 4. интонация. тоны (~4 мин)", callback_data="intonation"))
+kb_pronunciation.add(InlineKeyboardButton("📚 5. ударения (~1.5 мин)", callback_data="accents"))
+kb_pronunciation.add(InlineKeyboardButton("📚 6. сложности (~4 мин)", callback_data="hard_things"))
+kb_pronunciation.add(button_back)
+
+# Обучение (открытый и закрытый слог, 1 страница)
+kb_open_close_syllables = InlineKeyboardMarkup()
+kb_open_close_syllables.add(InlineKeyboardButton("📗 на 2 страницу", callback_data="farther_open_close"))
+kb_open_close_syllables.add(button_back_to_learning)
+
+# Обучение (открытый и закрытый слог, 2 страница)
+kb_open_close_syllables_2 = InlineKeyboardMarkup()
+kb_open_close_syllables_2.add(InlineKeyboardButton("📗 на 1 страницу", callback_data="first_page_syllables"))
+kb_open_close_syllables_2.add(button_back_to_learning)
+
+# Обучение (соответствие букв и звуков, 1 страница)
+kb_letters_sounds = InlineKeyboardMarkup()
+kb_letters_sounds.add(InlineKeyboardButton("📘 на 2 страницу", callback_data="farther_letters_sounds_2"))
+kb_letters_sounds.add(button_back_to_learning)
+
+# Обучение (соответствие букв и звуков, 2 страница)
+kb_letters_sounds_2 = InlineKeyboardMarkup()
+kb_letters_sounds_2.add(InlineKeyboardButton("📘 на 3 страницу", callback_data="farther_letters_sounds_3"))
+kb_letters_sounds_2.add(InlineKeyboardButton("📘 на 1 страницу", callback_data="farther_letters_sounds_1"))
+kb_letters_sounds_2.add(button_back_to_learning)
+
+# Обучение (соответствие букв и звуков, 3 страница)
+kb_letters_sounds_3 = InlineKeyboardMarkup()
+kb_letters_sounds_3.add(InlineKeyboardButton("📘 на 4 страницу", callback_data="farther_letters_sounds_4"))
+kb_letters_sounds_3.add(InlineKeyboardButton("📘 на 2 страницу", callback_data="farther_letters_sounds_2"))
+kb_letters_sounds_3.add(button_back_to_learning)
+
+# Обучение (соответствие букв и звуков, 4 страница)
+kb_letters_sounds_4 = InlineKeyboardMarkup()
+kb_letters_sounds_4.add(InlineKeyboardButton("📘 на 5 страницу", callback_data="farther_letters_sounds_5"))
+kb_letters_sounds_4.add(InlineKeyboardButton("📘 на 3 страницу", callback_data="farther_letters_sounds_3"))
+kb_letters_sounds_4.add(button_back_to_learning)
+
+# Обучение (соответствие букв и звуков, 5 страница)
+kb_letters_sounds_5 = InlineKeyboardMarkup()
+kb_letters_sounds_5.add(InlineKeyboardButton("📘 на 4 страницу", callback_data="farther_letters_sounds_4"))
+kb_letters_sounds_5.add(button_back_to_learning)
+
+# Обучение (дифтонги и трифтонги)
+kb_diphthongs_triphthongs = InlineKeyboardMarkup()
+kb_diphthongs_triphthongs.add(button_back_to_learning)
+
+# Обучение (интонация. тоны)
+kb_intonation = InlineKeyboardMarkup()
+kb_intonation.add(button_back_to_learning)
+
+# Обучение (ударения)
+kb_accents = InlineKeyboardMarkup()
+kb_accents.add(button_back_to_learning)
+
+# Обучение (сложности)
+kb_hard = InlineKeyboardMarkup()
+kb_hard.add(button_back_to_learning)
 
 # Тесты на знание языка
 kb_test = InlineKeyboardMarkup()
