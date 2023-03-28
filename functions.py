@@ -4,8 +4,7 @@ from bs4 import BeautifulSoup
 from googletrans import Translator
 from requests import get
 from unicodedata import category
-
-chars = "qwertyuiopasdfghjklzxcvbnm"
+from contextlib import suppress
 
 
 def remove_control_characters(s):
@@ -34,17 +33,13 @@ def parse_english_word_of_the_day():
 <b>слово:</b> {word}
 <b>перевод:</b> {translation}'''
 
-    try:
+    with suppress(Exception):
         transcript = f'/{soup.find("span", class_="ipa dipa lpr-2 lpl-1").text}/'
         text += f'''
 <b>транскрипция:</b> {transcript}
 '''
-    except:
-        pass
 
-    name = ""
-    for i in range(9):
-        name += choice(chars)
+    name = "".join([choice("qwertyuiopasdfghjklzxcvbnm") for _ in range(9)])
 
     try:
         doc = get(
@@ -69,9 +64,7 @@ def parse_german_word_of_the_day():
     word = all_.text
     translation = soup.find("font", color="green").text.lower()
 
-    name = ""
-    for i in range(9):
-        name += choice(chars)
+    name = "".join([choice("qwertyuiopasdfghjklzxcvbnm") for _ in range(9)])
 
     doc = get(
         "https://www.lexisrex.com" + soup.find("img", id="play_img_1")["onclick"].split("'")[1], headers=headers)
@@ -82,7 +75,7 @@ def parse_german_word_of_the_day():
 <b>слово:</b> {word}
 <b>перевод:</b> {translation}'''
 
-    try:
+    with suppress(AttributeError):
         example = soup.find("table", width="95%").text.split("\n")[0]
         translator = Translator()
         translation_of_example = translator.translate(example, src="de", dest="ru").text
@@ -90,8 +83,6 @@ def parse_german_word_of_the_day():
 <b>пример предложения:</b> {example}'''
         text += f'''
 <b>перевод предложения:</b> {translation_of_example}'''
-    except AttributeError:
-        pass
 
     return text, name
 
