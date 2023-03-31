@@ -7,8 +7,7 @@ from contextlib import suppress
 from random import choice
 
 from aiogram import Bot, types, Dispatcher
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.types import InputMediaPhoto, MediaGroup
+from aiogram.types import InputMediaPhoto
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 from googletrans import Translator
 
@@ -18,7 +17,7 @@ import keyboards as kb
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token="5911147477:AAEsJtQB0A4DQlXPbvdefbQu2EyvYjGGCok", parse_mode="HTML")
-dp = Dispatcher(bot, storage=MemoryStorage())
+dp = Dispatcher(bot)
 translator = Translator()
 
 
@@ -1033,8 +1032,6 @@ async def numbers(callback_query: types.CallbackQuery):
 async def learning_tenses(callback_query: types.CallbackQuery):
     await bot.answer_callback_query(callback_query.id)
     text = '''
-🕒 выбрана опция: <b>"времена".</b>
-
 🎁 это - шпаргалка по временам. в каждой клетке указана характеристика времени, 
 метод образования и маркеры (слова, по которым можно различать времена).
 <b>p.s.</b> главное - помнить порядок слов в предложении:
@@ -1044,10 +1041,7 @@ async def learning_tenses(callback_query: types.CallbackQuery):
 3. <b>вопросительное</b> - вспомогательный глагол, подлежащее (возможно с определением), основной глагол,
 дополнение (возможно с определением), обстоятельство
     '''
-    await edit_media(callback_query,
-                     "https://i.postimg.cc/gkc7Gb6J/tenses.jpg",
-                     text,
-                     kb.kb_learning_tenses)
+    await edit_media(callback_query, "https://i.postimg.cc/gkc7Gb6J/tenses.jpg", text, kb.kb_learning_tenses)
 
 
 # Обучение (английский, пунктуация)
@@ -1110,9 +1104,7 @@ async def period(callback_query: types.CallbackQuery):
 📘 если сокращенная фраза произносится, мы не ставим точки, например: <b>NASA, а не N.A.S.A.</b>
 '''
     await edit_media(callback_query,
-                     "https://i.postimg.cc/Hk2z7vdY/fullstophoriz-noart.jpg",
-                     text,
-                     kb.kb_period)
+                     "https://i.postimg.cc/Hk2z7vdY/fullstophoriz-noart.jpg", text, kb.kb_period)
 
 
 # Обучение (английский, кавычки)
@@ -1297,8 +1289,7 @@ async def uncount(callback_query: types.CallbackQuery):
 📕 примеры: <b>many years (много лет), much love (много любви), few people (мало людей), little time (мало времени).</b>
 '''
     await edit_media(callback_query,
-                     "https://i.ytimg.com/vi/rduOjOijUU4/maxresdefault.jpg",
-                     text, kb.kb_learning_tenses)
+                     "https://i.ytimg.com/vi/rduOjOijUU4/maxresdefault.jpg", text, kb.kb_learning_tenses)
 
 
 # английский, Пассивный залог
@@ -1310,9 +1301,7 @@ async def passive_voice(callback_query: types.CallbackQuery):
 пример: <b>he cleans the office every day. - он убирает офис каждое утро.</b> (активный залог) <b>the office is cleaned every day. - офис убирают каждый день.</b> (пассивный залог)
 📗 <b>метод образования пассивного залога отражен в таблице.</b>
 '''
-    await edit_media(callback_query,
-                     "https://i.postimg.cc/xdM1MRRC/passive-voice.jpg",
-                     text, kb.kb_learning_tenses)
+    await edit_media(callback_query, "https://i.postimg.cc/xdM1MRRC/passive-voice.jpg", text, kb.kb_learning_tenses)
 
 
 # английский, Косвенная речь
@@ -1328,9 +1317,7 @@ async def reported_speech(callback_query: types.CallbackQuery):
 ⚠ <b>при переводе в косвенную речь меняется время и (или) модальный глагол. таблица согласования времен приведена выше.</b>
 ⚠ <b>но время можно не менять, если вы говорите о научном факте, употребляете времена</b> <i>past simple/continuous</i> <b>с союзами</b> <i>when, since, if</i>.
     '''
-    await edit_media(callback_query,
-                     "https://i.postimg.cc/SN5DNJLy/reported.jpg",
-                     text, kb.kb_learning_tenses)
+    await edit_media(callback_query, "https://i.postimg.cc/SN5DNJLy/reported.jpg", text, kb.kb_learning_tenses)
 
 
 # английский, Каузативная форма
@@ -1346,8 +1333,8 @@ async def causative(callback_query: types.CallbackQuery):
 ⚠ <b>каузатив может быть использован во всех видовременных формах. они отображены в таблице выше.</b>
     '''
     await edit_media(callback_query,
-                     "https://mcenglish.ru/wp-content/uploads/2017/10/Screenshot_124-1.jpg",
-                     text, kb.kb_learning_tenses)
+                     "https://mcenglish.ru/wp-content/uploads/2017/10/Screenshot_124-1.jpg", text,
+                     kb.kb_learning_tenses)
 
 
 # Запуск
