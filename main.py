@@ -9,7 +9,8 @@ from random import choice
 from aiogram import Bot, types, Dispatcher
 from aiogram.types import InputMediaPhoto
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
-from googletrans import Translator
+# from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 import base
 import functions as fn
@@ -18,7 +19,7 @@ import keyboards as kb
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token="5911147477:AAEsJtQB0A4DQlXPbvdefbQu2EyvYjGGCok", parse_mode="HTML")
 dp = Dispatcher(bot)
-translator = Translator()
+# translator = Translator()
 
 
 async def edit_media(callback_query, url, caption, keyboard):
@@ -196,7 +197,8 @@ def parts_of_speech(id, word, translated, transcript, article="", is_german_noun
 '''
     else:
         if not is_german_noun and base.language(str(id), '', set=False, get=True) == "немецкий":
-            word = translator.translate(word, src="en", dest="de").text
+            word = GoogleTranslator(source='en', target='de').translate(word)
+            # word = translator.translate(word, src="en", dest="de").text
         else:
             word = f"{article} {word}"
         text = f'''
