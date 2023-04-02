@@ -26,8 +26,6 @@ def parse_english_word_of_the_day():
         if data.find("a") is not None:
             word = remove_control_characters(data.text)
 
-    # translator = Translator()
-    # translation = translator.translate(word, src="en", dest="ru").text
     translation = GoogleTranslator(source='en', target='ru').translate(word)
     text = f'''
 <b>слово:</b> {word}
@@ -77,8 +75,6 @@ def parse_german_word_of_the_day():
 
     with suppress(AttributeError):
         example = soup.find("table", width="95%").text.split("\n")[0]
-        # translator = Translator()
-        # translation_of_example = translator.translate(example, src="de", dest="ru").text
         translation_of_example = GoogleTranslator(source='de', target='ru').translate(example)
         text += f'''
 <b>пример предложения:</b> {example}'''
@@ -100,7 +96,6 @@ def process_word_marathon(url, is_noun=False):
     transcript = soup.find('span', class_="no-mobile transcript").text
     image = "https://www.kreekly.com" + soup.findAll("img")[1]["src"]
     if is_noun:
-        # word = Translator().translate(word, src="en", dest="de").text
         word = GoogleTranslator(source='en', target='de').translate(word)
         page = get("https://www.translate.ru/спряжение%20и%20склонение/немецкий/" + word, headers=headers)
         soup = BeautifulSoup(page.content, "lxml")
