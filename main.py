@@ -47,7 +47,7 @@ async def start_lang(callback_query: types.CallbackQuery):
     # Английский (старт)
     if callback_query.data == "english":
         base.language(str(callback_query.from_user.id), "английский", set=True, get=False)
-        await edit_media(callback_query, "https://i.postimg.cc/2S4gpjqt/2023-03-21-190241474.png",
+        await edit_media(callback_query, "https://i.postimg.cc/nzZFy4TC/2023-03-21-190241474.png",
                          f"🇬🇧 язык: <b>{base.language(str(callback_query.from_user.id), '', set=False, get=True)}</b>\nвыберите опцию:",
                          kb.kb_english)
 
@@ -62,7 +62,7 @@ async def start_lang(callback_query: types.CallbackQuery):
     # Назад
     elif callback_query.data == "back":
         if base.language(str(callback_query.from_user.id), '', set=False, get=True) == "английский":
-            await edit_media(callback_query, "https://i.postimg.cc/2S4gpjqt/2023-03-21-190241474.png",
+            await edit_media(callback_query, "https://i.postimg.cc/nzZFy4TC/2023-03-21-190241474.png",
                              f"🇬🇧 язык: <b>{base.language(str(callback_query.from_user.id), '', set=False, get=True)}</b>\nвыберите опцию:",
                              kb.kb_english)
         else:
@@ -196,6 +196,7 @@ def parts_of_speech(id, word, translated, transcript, article="", is_german_noun
     else:
         if not is_german_noun and base.language(str(id), '', set=False, get=True) == "немецкий":
             word = GoogleTranslator(source='en', target='de').translate(word)
+            # word = translator.translate(word, src="en", dest="de").text
         else:
             word = f"{article} {word}"
         text = f'''
@@ -333,7 +334,7 @@ async def accent_ger(callback_query: types.CallbackQuery):
 - сочетания <i>-ei, -ieren, ur-, un-</i> всегда ударные
     '''
     await edit_media(callback_query,
-                     "https://i.postimg.cc/XNDZRX7Y/accenrt.jpg",
+                     "https://i.postimg.cc/ZKLMHrvw/accenrt.jpg",
                      text,
                      kb.kb_accent_ger)
 
@@ -1006,7 +1007,7 @@ async def accents(callback_query: types.CallbackQuery):
 📋 <b>например</b>, ‘she did that! – она это сделала!
     '''
     await edit_media(callback_query,
-                     "https://i.postimg.cc/XNDZRX7Y/accenrt.jpg",
+                     "https://i.postimg.cc/ZKLMHrvw/accenrt.jpg",
                      text,
                      kb.kb_accents)
 
